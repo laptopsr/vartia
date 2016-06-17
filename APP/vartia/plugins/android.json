@@ -1,0 +1,40 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-sim": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "io.gvox.plugin.phonecalltrap": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-camerapicturebackground": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "com.mbppower.camerapreview": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        }
+    }
+}
