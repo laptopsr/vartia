@@ -1,6 +1,22 @@
 $(document).ready(function () {
 
 
+  if(!localStorage.getItem('sahkoposti'))
+  {
+	$('#odotanSoittoa').removeClass('alert-warning').addClass('alert-danger').html('Sähköpostisi on tyhjä');
+  } else {
+	var sahkoposti = localStorage.getItem('sahkoposti');
+	$('#sahkoposti').val(sahkoposti);
+  }
+
+  $('.saveEmail').click(function(){
+
+	var sahkoposti = $('#sahkoposti').val();
+	localStorage.setItem('sahkoposti', sahkoposti);
+	window.location.reload();
+  });
+
+
     var onFailSoHard = function(e)
     {
             console.log('failed',e);
@@ -18,102 +34,21 @@ $(document).ready(function () {
         },onFailSoHard);
     }
 
+
     document.getElementById('snapshot').onclick = function() { 
         var canvas = document.getElementById('canvas'); 
         var ctx = canvas.getContext('2d'); 
         ctx.drawImage(video,0,0); 
+
+        document.querySelector('img').src = canvas.toDataURL('image/jpeg');
+
     } 
-
-
-
-
-
-
-
-
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value
-    var newImage;
-
-    function onPhotoDataSuccess(imageURI) {
-  	jQuery("#smallImage").attr("src", imageURI).show();
-	newImage = imageURI;
-
-
-	var path = "http://vetel.fi/tiedostot/index.php";
-
-	var win = function (r) {
-	    console.log("Code = " + r.responseCode);
-	    console.log("Response = " + r.response);
-	    console.log("Sent = " + r.bytesSent);
-	    if(r.responseCode){
-		$('#result').html('Kiitos!<br>Kuva lähetetty onnistuneesti');
-	    }
-	}
-	
-	var fail = function (error) {
-	    alert("An error has occurred: Code = " + error.code);
-	    console.log("upload error source " + error.source);
-	    console.log("upload error target " + error.target);
-	
-	    document.getElementById('result2').innerHTML="An error has occurred: Code = " + error.code +
-					"upload error source " + error.source + 
-					"upload error target " + error.target;
-	
-	}
-
-	         var options = new FileUploadOptions();
-	          options.fileKey="file";
-	          options.fileName=newImage.substr(newImage.lastIndexOf('/')+1);
-	          options.mimeType="image/jpeg";
-	
-	
-	          var params = new Object();
-	          //params.email = email;
-	
-	          options.params = params;
-	          options.chunkedMode = false;
-	
-	          var ft = new FileTransfer();
-	          ft.upload(newImage, path, win, fail, options);
-    }
-
-
-    function onPhotoURISuccess(imageURI) {
-      var largeImage = document.getElementById('largeImage');
-      largeImage.style.display = 'block';
-      largeImage.src = imageURI;
-    }
-
-    function capturePhoto() {
-        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-            quality : 100,
-	    encodingType: Camera.EncodingType.JPEG,
-      	    targetHeight: 1024,
-    	    targetWidth: 1024,
-            destinationType : destinationType.FILE_URI,
-	    correctOrientation: true
-        });
-    }
-
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
-
-
-
-
-
 
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-
-        //pictureSource=navigator.camera.PictureSourceType;
-        //destinationType=navigator.camera.DestinationType;
-
 
 
 
@@ -141,11 +76,56 @@ function errorCallback(error) {
 }
 
 function soitto(){
-	$('#result').append('joku soita<br>');
+	$('#odotanSoittoa').html('Joku soita..');
 
-	//capturePhoto();
+        var canvas = document.getElementById('canvas'); 
+        var ctx = canvas.getContext('2d'); 
+        ctx.drawImage(video,0,0); 
 
+    	document.querySelector('img').src = canvas.toDataURL('image/jpeg');
+	var newImage = document.querySelector('img').src;
+
+	var path = "http://vetel.fi/tiedostot/index.php";
+
+	var win = function (r) {
+	    console.log("Code = " + r.responseCode);
+	    console.log("Response = " + r.response);
+	    console.log("Sent = " + r.bytesSent);
+	    if(r.responseCode){
+		$('#result').html('Kuva lähetetty onnistuneesti');
+	    }
+	}
+	
+	var fail = function (error) {
+	    console.log("An error has occurred: Code = " + error.code);
+	    console.log("upload error source " + error.source);
+	    console.log("upload error target " + error.target);
+	
+	    document.getElementById('result').innerHTML="An error has occurred: Code = " + error.code +
+					//"upload error source " + error.source + 
+					"upload error target " + error.target;
+	
+	}
+
+
+	         var options = new FileUploadOptions();
+	          options.fileKey="file";
+	          options.fileName='jokokuva';
+	          options.mimeType="text/plain";
+	
+	
+	          var params = new Object();
+	          params.sahkoposti = sahkoposti;
+	
+	          options.params = params;
+	          options.chunkedMode = false;
+	
+	          var ft = new FileTransfer();
+	          ft.upload(newImage, path, win, fail, options);
 }
+
+
+
 
 
 

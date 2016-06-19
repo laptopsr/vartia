@@ -28,15 +28,27 @@
       <div class="jumbotron">
         <center><h1><i class="fa fa-wrench" aria-hidden="true"></i> VARTIA</h1></center>
         <p class="lead">
-	  <p class="alert alert-warning">Odotan soittoa...</p>
+	  <p class="alert alert-warning" id="odotanSoittoa">Odotan soittoa...</p>
 	  <p id="result"></p>
 
 	    <img id="smallImage" src="" class="img-thumbnail"/>
 
 
-       <form><input type='button' id='snapshot' value="snapshot"/></form> 
-       <video autoplay class="img-thumbnail"></video>
-       <canvas id='canvas' class="img-thumbnail"></canvas> 
+       <form><input type='button' id='snapshot' class="btn btn-block btn-warning" value="Näytä nykyinen kuva"/></form> 
+       <video autoplay class="img-thumbnail" style="display:none"></video>
+       <canvas id='canvas' class="img-thumbnail" style="display:none;" width="800" height="600"></canvas> 
+
+	<img src="" width="800" height="600" class="img-thumbnail">
+	<br>
+
+    <div class="input-group">
+	<input type="text" id="sahkoposti" class="form-control" placeholder="Säköpostisi">
+      <span class="input-group-btn">
+        <button class="btn btn-success saveEmail" type="button">Tallenna</button>
+      </span>
+    </div>
+
+
 
 
 	</p>
