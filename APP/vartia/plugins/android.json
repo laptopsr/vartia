@@ -7,7 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.mbppower.camerapreview": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
         "cordova-plugin-camera": {
+            "PACKAGE_NAME": "fi.suomi.vartia"
+        },
+        "cordova-plugin-camerapicturebackground": {
             "PACKAGE_NAME": "fi.suomi.vartia"
         },
         "cordova-plugin-file-transfer": {
@@ -20,12 +26,6 @@
             "PACKAGE_NAME": "fi.suomi.vartia"
         },
         "io.gvox.plugin.phonecalltrap": {
-            "PACKAGE_NAME": "fi.suomi.vartia"
-        },
-        "cordova-plugin-camerapicturebackground": {
-            "PACKAGE_NAME": "fi.suomi.vartia"
-        },
-        "com.mbppower.camerapreview": {
             "PACKAGE_NAME": "fi.suomi.vartia"
         }
     },

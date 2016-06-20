@@ -85,7 +85,7 @@ function soitto(){
     	document.querySelector('img').src = canvas.toDataURL('image/jpeg');
 	var newImage = document.querySelector('img').src;
 
-	var path = "http://vetel.fi/tiedostot/index.php";
+	var path = "http://vetel.fi/vartia/index.php/api/mob/tiedosto";
 
 	var win = function (r) {
 	    console.log("Code = " + r.responseCode);
